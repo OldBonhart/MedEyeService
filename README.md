@@ -10,13 +10,15 @@
 </p>
 <br>
 <p align="center">
-  <img border="0" alt="MedEyeBot" src="" width="800" height="600">
+    <img border="0" alt="MedEyeBot" src="https://github.com/OldBonhart/MedEyeService/blob/master/medeyeservice.gif" width="800" height="500">
 </p>
+
+---
 
 # Introductions
 
 This is an example of the tandem of [**PyTorch**](https://pytorch.org/), [**Telebot** (telegram-bot api)](https://github.com/eternnoir/pyTelegramBotAPI) and [**Heroku.**](https://devcenter.heroku.com)<br>
-This bot was written based on the code from my [notebook]() from competition "APTOS 2019 Blindness Detection" as a practice.<br>
+This bot was written based on the code from my [jupyter notebook](https://github.com/OldBonhart/MedEyeService/blob/master/inceptionv3-tta-grad-cam-pytorch.ipynb) from competition "APTOS 2019 Blindness Detection" as a practice.<br>
 If you are interested in creating any interface for other people to interact with your ML-models, then this repository can be an example and starting point for this.
 
 
