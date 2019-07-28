@@ -1,6 +1,6 @@
 <a href=https://t.me/MedEyeBot/>
 <p align="center">
-  <img border="0" alt="MedEyeBot" src="https://github.com/OldBonhart/test/blob/master/image.png?style=centerme" width="150" height="150"> </p>
+  <img border="0" alt="MedEyeBot" src="https://github.com/OldBonhart/MedEyeService/blob/master/image.png?style=centerme" width="150" height="150"> </p>
 <h1 align="center">
 <strong>
   MedEyeService<a href=https://eyemedservice.herokuapp.com/>
