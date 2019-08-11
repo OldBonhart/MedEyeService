@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
-from texts import *
-from model import MakePredict
+from bot_description.texts import *
+from blindness_detection.model import MakePredict
 
 import os
 import time
@@ -15,7 +15,7 @@ from io import BytesIO
 import numpy as np
 
 ## Constants
-TOKEN = 'Your Token Here'
+TOKEN = '841484068:AAFciZH0o5mT8Zo_r7upTTGt-BdZ_Y0oiJk'
 STICKER_ID = 'CAADAgADAQAD3BQ9Js2i8jeh-Q6nAg'
 GIF_ID = 'CgADAgAD4AMAAtmwSUmif7hi8FXP3gI'
 
@@ -24,9 +24,9 @@ app = Flask(__name__)
 
 ## Bot menu
 markup_menu = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-btn_service = types.KeyboardButton('About service')
+btn_service = types.KeyboardButton('About Service')
 btn_ethos = types.KeyboardButton('Our Ethos')
-btn_apm = types.KeyboardButton('About prediction algorithm')
+btn_apm = types.KeyboardButton('About Prediction Algorithms')
 
 markup_menu.add(btn_service, btn_apm, btn_ethos)
 
@@ -36,7 +36,8 @@ def send_welcome(message):
     user_first_name = message.from_user.first_name
     bot.reply_to(message, f"Welcome {user_first_name}, I'm a bot-ophthalmologist, you can upload a " \
            "snapshot of the retinal fundus, and i will make a prediction the " \
-           "presence of diabetic retinopathy in the picture on a scale of 0 to 4.",
+           "presence of diabetic retinopathy in the picture on a scale of 0 to 4. \n"\
+           "Update: Now I can segment the retinal blood vessels.",
                  reply_markup=markup_menu)
 
 
@@ -62,11 +63,11 @@ def send_welcome(message):
 ## Information buttons
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
-    if message.text == 'About service':
+    if message.text == 'About Service':
         bot.reply_to(message, ABOUT_SERVICE,
                      reply_markup=markup_menu)
 
-    elif message.text == 'About prediction algorithm':
+    elif message.text == 'About Prediction Algorithms':
         bot.reply_to(message, ABOUT_PREDICTION_MODEL,
                      reply_markup=markup_menu)
 
@@ -98,21 +99,42 @@ def send_prediction_on_photo(message):
 
     # create BytesIO wrapper for the image
     img = Image.open(BytesIO(photo_bytes))
-    prob, label, heatmap = MakePredict().make_predict(img)
+    img = img.resize((312, 312), Image.BILINEAR)
+    prob, label, heatmap, seg_prediction = MakePredict().make_predict(img)
 
 
     # send prediction with probability
     prob = np.array(prob[label]) * 100
+    prob = np.around(prob, 2)                
     bot.send_message(message.chat.id, f'This is class {str(label)} with probability {str(prob) + " %"}',
                      reply_markup=markup_menu)
 
     # send alpha heatmap
+    bot.send_message(message.chat.id, "Visual explanations from neural net via gradient-based localization",
+                     reply_markup=markup_menu)
+    
     stream = BytesIO()
     heatmap.save(stream, format='PNG')
     stream.flush()
     stream.seek(0)
     bot.send_photo(message.chat.id, stream)
-    print("Sent Photo to user")
+    time.sleep(1)
+    print("Sent First Photo To User")
+
+    time.sleep(1)
+  
+    # send a mask of blood vessels
+    bot.send_message(message.chat.id, "Retinal blood vessels segmentation",
+                     reply_markup=markup_menu)
+ 
+    stream = BytesIO()
+    seg_prediction.save(stream, format='PNG')
+    stream.flush()
+    stream.seek(0)
+    bot.send_photo(message.chat.id, stream)
+    time.sleep(1)
+    print("Sent Second Photo To User")
+    seg_prediction.save(stream, format='PNG')
 
 
 
