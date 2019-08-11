@@ -28,7 +28,7 @@ If you are interested in creating any interface for other people to interact wit
 The predictive model of the bot has a minimal configuration due to the limitations of the Heroku free server, and consequently the relatively low prediction accuracy. <br>
 
 **Blood Vessels Segmentation :**
-+ This is vanilla **UNet** [pretrained](https://github.com/OldBonhart/vessel_segmentation) on **DRIVE**, **STARE**, and **CHASE_DB1** datasets.
++ This is vanilla **UNet** [pretrained](https://github.com/OldBonhart/Retinal-Blood-Vessels-Segmentation) on **DRIVE**, **STARE**, and **CHASE_DB1** datasets.
 
 ## Files
 + Proctfile - configuration file to deploy on heroku
