@@ -18,19 +18,19 @@
 # Introductions
 
 This is an example of the tandem of [**PyTorch**](https://pytorch.org/), [**Telebot** (telegram-bot api)](https://github.com/eternnoir/pyTelegramBotAPI) and [**Heroku.**](https://devcenter.heroku.com)<br>
-This bot was written based on the code from my [jupyter notebook](https://github.com/OldBonhart/MedEyeService_heroku/blob/master/inceptionv3-tta-grad-cam-pytorch.ipynb) from competition "APTOS 2019 Blindness Detection" as a practice.<br>
+This bot was written based on the code from my [jupyter notebook](https://github.com/OldBonhart/MedEyeService/blob/master/code_from_competition/inceptionv3-tta-grad-cam-pytorch.ipynb) from competition "APTOS 2019 Blindness Detection" as a practice.<br>
 If you are interested in creating any interface for other people to interact with your ML-models, then this repository can be an example and starting point for this.
 <br> **Update:** <br> Now bot can segment the retinal blood vessels.
 
 ## About Bot's prediction models
 **Blindness detection :**
-+ This is Resnet18, trained on a dataset of [resized data](https://www.kaggle.com/donkeys/retinopathy-train-2015) from the [“Detection of Diabetic Retinopathy”]() and on data from the kaggle competition [“APTOS 2019 Blindness Detection”](https://www.kaggle.com/c/aptos2019-blindness-detection/) and has a [quadratic weighted kappa](https://ru.wikipedia.org/wiki/OpenCV) 0.59+ in competitions "APTOS 2019 Blindness Detection".<br>
-The predictive model of the bot has a minimal configuration due to the limitations of the Heroku server, and consequently the relatively low prediction accuracy. <br>
++ This is Resnet18, trained on a dataset of [resized data](https://www.kaggle.com/donkeys/retinopathy-train-2015) from the [“Detection of Diabetic Retinopathy”](https://www.kaggle.com/c/diabetic-retinopathy-detection) and on data from the kaggle competition [“APTOS 2019 Blindness Detection”](https://www.kaggle.com/c/aptos2019-blindness-detection/) and has a [quadratic weighted kappa](https://www.medcalc.org/manual/kappa.php) 0.59+ in competitions "APTOS 2019 Blindness Detection".<br>
+The predictive model of the bot has a minimal configuration due to the limitations of the Heroku free server, and consequently the relatively low prediction accuracy. <br>
 
 **Blood Vessels Segmentation :**
-+ This is vanilla **UNet** pretrained on **DRIVE**, **STARE**, and **CHASE_DB1** datasets.
++ This is vanilla **UNet** [pretrained](https://github.com/OldBonhart/vessel_segmentation) on **DRIVE**, **STARE**, and **CHASE_DB1** datasets.
 
-### Files
+## Files
 + Proctfile - configuration file to deploy on heroku
 + requirements.txt - requirements
 + **blindness_detection** - blindness detection model
@@ -43,7 +43,7 @@ The predictive model of the bot has a minimal configuration due to the limitatio
 # Notes on Heroku
 
 
-### Common heroku errors
+## Common heroku errors
 
 When deploying ML-applications you may encounter with some heroku common server errors:
 + [h10](https://devcenter.heroku.com/articles/error-codes#h10-app-crashed) - The reasons may be many, the most common is errors in the code, for the solution you need to [look at the logs.](https://devcenter.heroku.com/articles/logging)
@@ -53,7 +53,7 @@ When deploying ML-applications you may encounter with some heroku common server 
 
 
 
-### Installing additional packages
+## Installing additional packages
 
 Heroku server by default does not have the following libraries on board: (libsm6, libxrender1 libfontconfig1, libice6), which are deb-packages, among other things, for the correct drawing of geometric shapes,the opencv library without these packages will not work, therefore if you use opencv  in your code then:
 
