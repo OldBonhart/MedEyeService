@@ -8,7 +8,7 @@ DISCRIPT = f"Welcome, I'm a bot-ophthalmologist, you can upload a " \
 ABOUT_SERVICE = 'Imagine that you can detect blindness before it happened. ' \
         'Millions of people suffer from diabetic retinopathy, the' \
         'leading cause of blindness among working older people. \n \n' \
-        'This project was created to help ophthalmologists identify and prevent' \
+        'This project was created to help ophthalmologists identify and prevent ' \
         'this disease among people living in rural areas where it is difficult to ' \
         'conduct a medical examination. \n \nA doctor can upload a retinal image to this bot, ' \
         'which diagnoses diabetic retinopathy from 0 to 4, which corresponds to"No DR", "Mild", "Moderate", ' \
