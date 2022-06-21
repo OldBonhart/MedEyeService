@@ -10,7 +10,7 @@ scikit-image
 kiwisolver==1.1.0
 MarkupSafe==1.1.1
 matplotlib==3.1.1
-numpy==1.16.4
+numpy==1.22.0
 gunicorn==19.0.0
 Pillow==6.1.0
 pyparsing==2.4.0
